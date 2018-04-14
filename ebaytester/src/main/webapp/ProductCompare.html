@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Compare Product</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <script src="jquery-3.3.1/jquery.min.js"></script>
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+  <div><a href="home.html"><img src="images/logo.png" title="eBay"></a></div>
+</div>
+
+<form class="form-inline" id="ProductCompare">
+	
+	<div class="container">
+         
+		
+		
+		
+		<div class="form-group">
+		<div class="container">
+		<div class="col-sm-6">
+		<div class="col-sm-3">
+	        <label class="control-label" for="pwd">Category</label>
+	     </div>
+        <div class="col-sm-3">
+           <select  name="Category" id="Category">
+            <option value="">All Category</option>
+           </select>
+         </div>
+         
+         </div>
+          <div class="col-sm-6">
+         <div class="col-sm-3">
+	          <label class="control-label" for="pwd">Subcategory</label>
+	      </div>
+         <div class="col-sm-3">
+	         <select  name="Subcategory" id="Subcategory">
+	          <option value="">Sub Category</option>
+	          </select>
+        </div>
+       </div>
+       </div>
+       
+       <br>
+       <div class="container">
+       	<label class="control-label" for="pwd">Product 1</label>
+       	 <select  name="Product1" id="Product1">
+            <option value="">All Product</option>
+           </select>
+           
+           <br><br>
+           
+           <label class="control-label " for="pwd">Product 2</label>
+         <select  name="Product2" id="Product2">
+            <option value="">All Product</option>
+          </select>
+       
+       </div>
+       
+       
+       <br>
+       <br>
+      </div>
+      <center> 
+      		<button type="submit" class="btn btn-primary" id="compare" name="compare">Compare</button>
+      		<a href="ProductCompare.html"><button type="button" class="btn btn-primary" id="reset" name="reset">Reset</button></a>
+      </center>
+      </form>
+      <br>
+      <br>
+      <div id="compareTable">
+      	
+      </div>
+      
+ <script src="ajax/CompareProductAjax.js"></script>
+ <!-- <script src="javascript/CompareProduct.js"></script> -->
+</body>
+</html>
