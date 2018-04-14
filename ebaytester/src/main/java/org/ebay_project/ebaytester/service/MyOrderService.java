@@ -31,13 +31,16 @@ public class MyOrderService {
 		PreparedStatement preparedstmnt = null;
 		try {
 // =========================================QUERY FOR DEALS ON PRODUCT===========================================//		
-			String query = "SELECT t.* , p.product_img_url, p.product_name,p.item_id, d.free_check,  u.user_fname, u.user_lname, u.user_email FROM transaction AS t, product as p, user as u, seller_deal AS d WHERE u.user_id=t.seller_id AND t.product_id=p.product_id AND d.deal_id=t.deal_id AND t.user_id=? ORDER BY t.txn_id DESC";
+			String query = "SELECT DISTINCT t.Txn_surr_id,t.* ,p.product_img_url, p.product_name,p.item_id, d.free_check,  u.user_fname, u.user_lname, u.user_email FROM transaction AS t, product as p, user as u, seller_deal AS d WHERE u.user_id=t.seller_id AND p.product_id=t.product_id AND d.deal_id=t.deal_id AND t.user_id=? ORDER BY t.txn_id DESC";
 			// String query = "select * from transaction where user_id=?";
 			preparedstmnt = connection.prepareStatement(query);
 			preparedstmnt.setInt(1, user_id);
 			ResultSet rs = preparedstmnt.executeQuery();
+			System.out.println(rs.getRow());
+			System.out.println("hello");
 			while (rs.next()) {
-				if(rs.getInt("deal_id")!=0)
+				System.out.println(rs.getRow());
+				if((rs.getInt("deal_id"))!=0)
 				{
 				oo = new MyOrder();
 				oo.setTxn_surr_id(rs.getInt("Txn_surr_id"));

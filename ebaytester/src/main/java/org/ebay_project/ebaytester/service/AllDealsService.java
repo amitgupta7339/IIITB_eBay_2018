@@ -36,12 +36,13 @@ public class AllDealsService {
 			}
 		}
 	}
-
+	String deal_name;
 //=============================================PAYMENT THROUGH CARD DEAL ITEMS====================================//
 	public String buyCartItems(int user_id, int deal_id, String card_number, String cvv, String ex_month,
-			String ex_year) {
+			String ex_year) { 
 		try {
 			System.out.println("DealId:" + deal_id);
+			System.out.println("SellerId:" + user_id);
 			String ex_date = ex_month + "/" + ex_year;
 			int product_discount = 0;// Deal applied already
 			pay = payser.cardDetailsValidation(card_number, cvv, ex_date);
@@ -60,14 +61,15 @@ public class AllDealsService {
 					} else {
 						discount = 0;
 					}
-				   query="SELECT * FROM seller_deal WHERE user_id=? AND deal_id=?";
+				   query="SELECT * FROM seller_deal WHERE deal_id= ?";
 				   PreparedStatement pstmt = connection.prepareStatement(query);
-				    pstmt.setInt(1, user_id);
-					pstmt.setInt(2, deal_id);
-				    rs=pstmt.executeQuery(query);
-					if(rs.next()) {
-						java.sql.Date end_date=rs.getDate("end_date");
-						java.sql.Date start_date=rs.getDate("start_date");
+					pstmt.setInt(1, deal_id);
+					System.out.println(query);
+					ResultSet rs1=pstmt.executeQuery();
+					if(rs1.next()) {
+						java.sql.Date end_date=rs1.getDate("end_date");
+						java.sql.Date start_date=rs1.getDate("start_date");
+						deal_name=rs1.getString("deal_name");
 						java.sql.Date current_date = null;
 						String query3 = "SELECT CURDATE() today";
 						PreparedStatement preparedstmnt3=null;
@@ -106,7 +108,7 @@ public class AllDealsService {
 					query = "update cardDetails set balance=" + (balance + total)
 							+ " where card_number=000000000000000;";
 					stmt.execute(query);
-					String transaction = t.enterCartTransactionDeal(deal_id, user_id);
+					String transaction = t.enterCartTransactionDeal(deal_id, user_id,deal_name);
 					query = "select product_id from seller_deal where deal_id=" + deal_id;
 					rs = stmt.executeQuery(query);
 					while (rs.next()) {

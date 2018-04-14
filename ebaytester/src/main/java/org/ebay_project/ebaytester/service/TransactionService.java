@@ -782,7 +782,7 @@ public class TransactionService {
 
 	}
 
-	public String enterOneCartTransactionDeal(int txn_id, int user_id, int product_id, int quantity, int check) {
+	public String enterOneCartTransactionDeal(int deal_id,String deal_name,int txn_id, int user_id, int product_id, int quantity, int check) {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ebaytest", "root", "root");
 
@@ -790,8 +790,7 @@ public class TransactionService {
 			float amount = 0;
 			int discount = 0;
 			String product_status = "order_placed";
-			String product_deal = "";
-			int deal_id = 0;
+			String product_deal = deal_name;
 			String user_address = "";
 
 			java.util.Date date = new java.util.Date();
@@ -840,7 +839,7 @@ public class TransactionService {
 		}
 	}
 
-	public String enterCartTransactionDeal(int deal_id, int user_id) {
+	public String enterCartTransactionDeal(int deal_id, int user_id,String deal_name) {
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ebaytest", "root", "root");
 			String query = "select max(txn_id) from transaction;";
@@ -857,7 +856,7 @@ public class TransactionService {
 				int userid = user_id;
 				int product_id = rs.getInt("product_id");
 				int quantity = 1;// default quantity for deal
-				enterOneCartTransactionDeal(txn_id, userid, product_id, quantity, rs.getInt("free_check"));
+				enterOneCartTransactionDeal(deal_id,deal_name,txn_id, userid, product_id, quantity, rs.getInt("free_check"));
 			}
 			con.close();
 			System.out.println("Done");

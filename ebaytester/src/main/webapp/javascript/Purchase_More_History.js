@@ -16,8 +16,10 @@ $.ajax({
           success: function(response){
           result=response;
           alert(x);
+          alert(response[x].deal_id+"hanji");
           if(result[x].deal_id!=0)
-          {alert(result[x].deal_id);
+          {alert("if");
+            alert(result[x].deal_id);
             for(i in result)
             {
               if(result[i].deal_id==result[x].deal_id)
