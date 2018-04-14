@@ -1,0 +1,66 @@
+<!Doctype HTML>
+<html lang="en">
+<head>
+	<title>Prototype</title>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width , initial scale = 1">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  	<script src="jquery-3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="css/basic.css">
+ </head>
+ <style>
+  #nav-1 a{
+    color:black;
+  }
+ </style>
+ <script>
+  $(function(){
+ 	 $("#header").load("header.html");
+  });
+ </script>
+ <body style="background-color: #F9F9F9">
+   <div id="header"></div>
+
+	 <!--Nav-bar starts-------->
+   <div id="mainContent" class="container">
+     <nav class="navbar" id="nav-1">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" id="category" href="#"></a>
+          </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://localhost:5224/ebaytester/construction_page.html">Featured</a></li>
+            <li><a href="#" class="category" value="Electronics">Electronics</a></li>
+            <li><a href="#" class="category" value="Fashion">Fashion</a></li>
+            <li><a href="#" class="category" value="Home and More">Home and More</a></li>
+            <li><a href="#" class="category" value="Sales and Events">Sales &amp Events</a></li>
+          </ul>
+        </div>
+      </nav>
+   </div>
+	 <!--=======================Nav-bar ends==================== -->
+	 <div id="c1" class="container">
+	</div>
+	<div id="c2" class="container">
+ </div>
+	<script src="javascript/product_list_2.js"></script>
+ </body>
+ <script>
+ $(document).ready(function()
+		 {
+		   console.log("hi in home through click on deals!!!");
+
+		  $('.category').click(function(){
+		    //console.log("hi again in deals");
+		    //alert($(this).attr('value'));
+		    localStorage.category_name=$(this).attr('value');
+		    window.location="http://localhost:5224/ebaytester/prod_list_2.html";
+		  });
+
+		  // $("#yo").load("javascript/product.txt");
+
+		});
+ </script>
+ </html>
