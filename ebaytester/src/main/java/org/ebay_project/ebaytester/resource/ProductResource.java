@@ -40,7 +40,29 @@ public class ProductResource {
 //		ProductService ps = new ProductService();
 //		return ps.dealImagesList();
 //	}
-// =============================GET ALL PRODUCTS OF PARTICULAR SELLER BASES ON SELLER ID=========================//
+//==========================================GET PRODUCT NAMES BASES ON SUB CATEGORY===============================//	
+    @GET
+    @Path("/getProductList/{Subcategory}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Product> getProductList(@PathParam("Subcategory") String Subcategory)
+    {
+   	 ProductService ps = new ProductService();
+   	 return ps.getProductList(Subcategory) ;
+    }
+    
+//===========================================COMPARE TWO PRODUCT==================================================//	    
+    @POST
+    @Path("/getComparedProduct")
+    @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public List<Product> getComparedProduct(@FormParam("Product1") String Product1,@FormParam("Product2") String Product2)
+    {
+   	 ProductService ps = new ProductService();
+   	 System.out.println(Product1+" "+Product2);
+   	 return ps.getComparedProduct(Product1,Product2) ;
+    }
+		
+// =============================GET ALL PRODUCTS OF PARTICULAR SELLER BASES ON SELLER ID==========================//
 	@GET // (written by Anamol)
 	@Path("/list/{user_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -48,7 +70,7 @@ public class ProductResource {
 		ProductService ps = new ProductService();
 		return ps.getSellerAllProducts(user_id);
 	}
-// =================================GET PRODUCT BASES ON SELLER ID AND PRODUCT NAME==============================//
+// =================================GET PRODUCT BASES ON SELLER ID AND PRODUCT NAME===============================//
 	@GET // (written by Anamol)
 	@Path("/list/{user_id}/{product_name}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -56,7 +78,7 @@ public class ProductResource {
 		ProductService ps = new ProductService();
 		return ps.getSellerProduct(user_id, product_name);
 	}
-// =========================================GET PRODUCT BASES ON PRODUCT ID======================================//
+// =========================================GET PRODUCT BASES ON PRODUCT ID=======================================//
 	@GET // (written by Amit in Exam)
 	@Path("/getproduct/{product_id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -64,7 +86,7 @@ public class ProductResource {
 		ProductService ps = new ProductService();
 		return ps.getProductDetail(product_id);
 	}
-// =====================GET DETAILS OF PRODUCT FOR PRODUCT DESCRIPTION PAGE BASES ON PRODUCT ID==================//
+// =====================GET DETAILS OF PRODUCT FOR PRODUCT DESCRIPTION PAGE BASES ON PRODUCT ID===================//
   	@GET //(Written By Pulkit)
 	@Path("/{product_id}")
 	@Produces(value = {MediaType.APPLICATION_JSON})
@@ -72,7 +94,7 @@ public class ProductResource {
 		ProductService prod_serv = new ProductService();
 		return prod_serv.getProductById(prod_id);
 	}
-// ========================================GET PRODUCTS BASES ON CATEGORY NAME===================================//
+// ========================================GET PRODUCTS BASES ON CATEGORY NAME====================================//
 	@GET // (written by Pulkit)
 	@Path("/category/{category_name}")
 	@Produces(value = { MediaType.APPLICATION_JSON })
@@ -86,7 +108,7 @@ public class ProductResource {
 			return list;
 		}
 	}
-// =======================================UPLOAD PRODUCT DETAILS BASES ON SELLER ID==============================//
+// =======================================UPLOAD PRODUCT DETAILS BASES ON SELLER ID===============================//
 	@POST // (written by Prakhar,changes done by Saumya and Amit)
 	@Path("/uploadProduct/{seller_id}")
 	@Produces(value = { MediaType.APPLICATION_JSON })

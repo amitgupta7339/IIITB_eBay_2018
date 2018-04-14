@@ -37,8 +37,129 @@ public class ProductService {
 			}
 		}
 	}
+// ===========================================PRODUCT COMPARISON =================================================//
+	
+		public List<Product> getComparedProduct(String product1,String product2)
+		{
+			Product p1 ;
+			List<Product> list = new ArrayList<>();
+			PreparedStatement preparedstmnt;
+			String[] arr= {product1,product2};
+			try
+			{
+				for(int i=0;i<2;i++)
+				{
+				String query="select * from product where product_name = ?";
+				preparedstmnt=	(PreparedStatement) conn.prepareStatement(query);
+				preparedstmnt.setString(1, arr[i]);
+				ResultSet rs = preparedstmnt.executeQuery();
+				rs = preparedstmnt.executeQuery();
 
-// ===========================================PRODUCT DESCRIPTION PAGE===========================================//
+				while (rs.next()) {
+					p1= new Product();
+					p1.setProduct_id(rs.getInt(1));
+					p1.setSub_category_id(rs.getInt(2));
+					p1.setCategory_id(rs.getInt(3));
+					p1.setUser_id(rs.getInt(4));
+					p1.setProduct_name(rs.getString(5));				
+					p1.setProduct_price(rs.getInt(6));
+					p1.setProduct_discount(rs.getInt(7));
+					p1.setProduct_condition(rs.getString(8));
+					p1.setProduct_shipping(rs.getString(9));
+					p1.setProduct_sold_quantity(rs.getInt(10));
+					p1.setProduct_img_url(rs.getString(11));
+					p1.setProduct_available_quantity(rs.getInt(12));
+					p1.setProduct_description(rs.getString(13));
+					p1.setProduct_rating(rs.getInt(14));
+					p1.setItem_id(rs.getString(15));
+					p1.setBrand(rs.getString(16));
+					p1.setColor(rs.getString(17));
+					p1.setScreen_size(rs.getString(18));
+					p1.setProcessor(rs.getString(19));
+					p1.setStorage(rs.getString(20));
+					p1.setWarranty(rs.getString(21));
+					p1.setOperating_system(rs.getString(22));
+					p1.setProduct_year(rs.getInt(23));
+					p1.setGender(rs.getString(24));
+					p1.setApplicable(rs.getString(25));
+					p1.setMaterial(rs.getString(26));
+					p1.setClothing_size(rs.getString(27));
+					p1.setStyle(rs.getString(28));
+					p1.setWarranty_type(rs.getString(29));
+					p1.setCard_class(rs.getString(30));
+					
+					list.add(p1);
+					}
+				}
+				System.out.println(list);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			
+			return list;
+		}
+		
+// ===============================================================================================================//		
+		public List<Product> getProductList(String subCategoryName)
+		{
+			Product p1 ;
+			List<Product> list = new ArrayList<>();
+			PreparedStatement preparedstmnt;
+			try
+			{
+				String query="select sub_category_id from sub_category where sub_category_name = ?";
+				preparedstmnt=	(PreparedStatement) conn.prepareStatement(query);
+				preparedstmnt.setString(1, subCategoryName);
+				ResultSet rs = preparedstmnt.executeQuery();
+				int sub_category_id=0;
+				if(rs.next())
+					sub_category_id=rs.getInt(1);
+				query="select * from product where sub_category_id = ?";
+				preparedstmnt=	(PreparedStatement) conn.prepareStatement(query);
+				preparedstmnt.setInt(1, sub_category_id);
+				rs = preparedstmnt.executeQuery();
+
+				while (rs.next()) {
+					p1= new Product();
+					p1.setSub_category_id(rs.getInt(2));
+					p1.setCategory_id(rs.getInt(3));
+					p1.setUser_id(rs.getInt(4));
+					p1.setProduct_name(rs.getString(5));				
+					p1.setProduct_price(rs.getInt(6));
+					p1.setProduct_discount(rs.getInt(7));
+					p1.setProduct_condition(rs.getString(8));
+					p1.setProduct_shipping(rs.getString(9));
+					p1.setProduct_sold_quantity(rs.getInt(10));
+					p1.setProduct_img_url(rs.getString(11));
+					p1.setProduct_available_quantity(rs.getInt(12));
+					p1.setProduct_description(rs.getString(13));
+					p1.setProduct_rating(rs.getInt(14));
+					p1.setItem_id(rs.getString(15));
+					p1.setBrand(rs.getString(16));
+					p1.setColor(rs.getString(17));
+					p1.setScreen_size(rs.getString(18));
+					p1.setProcessor(rs.getString(19));
+					p1.setStorage(rs.getString(20));
+					p1.setWarranty(rs.getString(21));
+					p1.setOperating_system(rs.getString(22));
+					p1.setProduct_year(rs.getInt(23));
+					p1.setGender(rs.getString(24));
+					p1.setApplicable(rs.getString(25));
+					p1.setMaterial(rs.getString(26));
+					p1.setClothing_size(rs.getString(27));
+					p1.setStyle(rs.getString(28));
+					p1.setWarranty_type(rs.getString(29));
+					p1.setCard_class(rs.getString(30));
+					
+					list.add(p1);
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			
+			return list;
+		}
+// ===========================================PRODUCT DESCRIPTION PAGE============================================//
 	public Product_desc getProductById(int prod_id) {
 		Product_desc product = new Product_desc();
 		try {
