@@ -106,6 +106,11 @@ function update(x){
     alert("available quantity "+result[x].product_available_quantity);
     $('#Quantity'+result[x].product_id).val(result[x].product_available_quantity);
   }
+	if($('#Quantity'+result[x].product_id).val()<1){
+		alert("Quantity can not be less than one");
+		window.location="http://localhost:5224/ebaytester/cart.html";
+	}
+	else{
   $.ajax({
             type :"GET",
             url: "http://localhost:5224/ebaytester/webapi/cart/updateproductQuantity/"+result[x].product_id+"/"+$('#Quantity'+result[x].product_id).val()+"/"+localStorage.user_Id,
@@ -113,10 +118,10 @@ function update(x){
             complete: function(response){
             	window.location="http://localhost:5224/ebaytester/cart.html";
               //cart_list_ajax();/*function call*/
-              
+
             }
           });
-
+       }
 };
 
 /*============================================================functionality on checkedon and checkedoff==========================================*/
