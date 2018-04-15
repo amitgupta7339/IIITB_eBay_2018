@@ -19,10 +19,12 @@ $('#login')
 										localStorage.user_PINCODE = response.user_pincode;
 										localStorage.user_Phone = response.user_phone;
 										localStorage.wallet_balance=response.wallet_balance;
+										alert(localStorage.product_id_buynow);
 										if (localStorage.email == 'admin@gmail.com') {
 											window.location = "http://localhost:5224/ebaytester/admin_category.html";
 										}
-										else if(localStorage.product_id_buynow!=null)
+										
+										else if(localStorage.product_id_buynow != null)
 											{if(parseInt(localStorage.user_PINCODE)==8888)
 												{
 													window.location = "http://localhost:5224/ebaytester/address_form_buyer.html";
@@ -50,10 +52,7 @@ $('#login')
 														window.location = "http://localhost:5224/ebaytester/dealByName.html";
 													}
 											}
-											// else if(localStorage.cart!=null)
-											// {
-											// 	window.location = "http://localhost:5224/ebaytester/cart.html";
-											// }
+						
 											else
 											{
 												window.location = "http://localhost:5224/ebaytester/home.html";

@@ -48,10 +48,10 @@ $('#Deal').on('change', function() {
                         		  var id = 'free' + (i+1);
 
                         		  $(`<select  name="${id}" id="${id}" style="width:150px;"><option value="">None</option></select>`).appendTo('#free');
-                         		 for(var j=0;j<product_list.length;j++)
-                    			 {
-                    			 	$('<option value="'+ product_list[j].product_id+'">' + product_list[j].item_id+ '</option>').appendTo(`#${id}`);
-                    			 }
+                           		 for(var j=0;j<product_list.length;j++)
+                        			 {
+                        			 	$('<option value="'+ product_list[j].product_id+'">' + product_list[j].item_id+ '</option>').appendTo(`#${id}`);
+                        			 }
                         		 }
                         	  free_count = i;
                         	  if(free_count==0)$('#free_tag').hide();
@@ -139,7 +139,7 @@ function addNewDeal()
 			  url: "http://localhost:5224/ebaytester/webapi/deal/addProductsToDeal",
 			  data : deal_object,
 			  contentType: "application/json;",
-			  success: function(response){
+			  complete: function(response){
 								console.log(response)
 								if(response!=null)
 									  {alert("Uploaded");

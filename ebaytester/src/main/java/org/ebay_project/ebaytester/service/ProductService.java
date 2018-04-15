@@ -537,7 +537,7 @@ public class ProductService {
 			if (rs.next())
 				product_id = rs.getInt("product_id");
 
-			Product product = new Product(product_id, sub_category_id, sub_category_id, seller_id, product_price,
+			Product product = new Product(product_id, sub_category_id, category_id, seller_id, product_price,
 					product_discount, product_sold_quantity, product_available_quantity, product_rating, product_year,
 					product_name, product_condition, product_shipping, product_img_url, product_description, brand,
 					color, screen_size, processor, storage, warranty, operating_system, gender, applicable, material,

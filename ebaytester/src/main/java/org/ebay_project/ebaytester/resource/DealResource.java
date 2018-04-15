@@ -32,7 +32,7 @@ public class DealResource {
 		return dealService.uploadNewDeal(deal_name.toUpperCase(), free_products, paid_products, overall_discount);
 	}
 //==============================================GET ALL DEAL NAMES=================================================// 	
-	@GET
+	@GET// (write by Pulkit)
 	@Path("/getAllDealName")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Deals> getAllDeal()
@@ -41,8 +41,8 @@ public class DealResource {
 		System.out.println("Retrieving all list");
 		return dealService.getAllDealsName();
 	}
-	
-	@POST // (write by Prakhar and Amit)
+//=============================================ADD PRODUCTS INTO DEAL============================================//	
+	@POST // (write by Pulkit)
 	@Path("/addProductsToDeal")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -53,8 +53,8 @@ public class DealResource {
 		DealService dealService = new DealService();
 		return dealService.addProductsToDeal(deal);
 	}
-	
-	@GET
+//===========================================GET DEAL INFO ON DEAL NAME==========================================//	
+	@GET // (write by Pulkit)
 	@Path("/{deal_name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Deals getDealInfo(@PathParam("deal_name") String deal_name)
@@ -64,3 +64,4 @@ public class DealResource {
 		return dealService.getDealInfo(deal_name);
 	}
 }
+//=================================================END OF CODE=================================================// 

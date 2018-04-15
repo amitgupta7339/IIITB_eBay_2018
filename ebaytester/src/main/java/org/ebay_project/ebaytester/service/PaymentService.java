@@ -161,7 +161,7 @@ public class PaymentService {
 				query = "select balance from cardDetails where card_number=000000000000000;";
 				rs = stmt.executeQuery(query);
 				if (rs.next())
-					balance = rs.getInt("balance");
+					balance = rs.getFloat("balance");
 				query = "update cardDetails set balance=" + (balance + price) + " where card_number=000000000000000;";
 				stmt.execute(query);
 

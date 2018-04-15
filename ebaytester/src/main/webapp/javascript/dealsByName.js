@@ -66,12 +66,11 @@ $('#a1').html(strn);
 });
 
 function buybutton(i)
-{localStorage.product_id_buynow=null;
-  localStorage.place_order=null;
+{localStorage.product_id_buynow = null;
+  localStorage.place_order = null;
 	 alert(i);
 	 localStorage.deal_id = i;
-		localStorage.place_order=null;
-		if(localStorage.user_Id==null)
+		if(localStorage.user_Id == null)
 			{
 			 window.location = "http://localhost:5224/ebaytester/login.html";
 			}

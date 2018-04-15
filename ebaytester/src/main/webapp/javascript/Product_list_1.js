@@ -527,7 +527,8 @@ function showList()
 	function buybutton(prod_id) {
 		// alert("inside");
 		localStorage.product_id_buynow = prod_id;
-		localStorage.place_order=null;
+		localStorage.place_order = null;
+		localStorage.deal_id = null;
 		if(localStorage.user_Id==null)
 			{
 			 window.location = "http://localhost:5224/ebaytester/login.html";

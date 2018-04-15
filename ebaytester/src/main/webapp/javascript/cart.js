@@ -149,9 +149,9 @@ $('#shop_more').click(function(){
 	window.location="http://localhost:5224/ebaytester/home.html";
 });
 $('#place_order').click(function(){
-	localStorage.product_id_buynow=null;
-	localStorage.place_order="place_order";
-	localStorage.deal_id=null;
+	localStorage.product_id_buynow = null;
+	localStorage.place_order = "place_order";
+	localStorage.deal_id = null;
 	//alert(localStorage.product_id_buynow);
  if(parseInt(localStorage.user_PINCODE)==8888)
   {

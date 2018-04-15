@@ -26,7 +26,7 @@ import org.ebay_project.ebaytester.service.CartService;
 @Path("/deal")
 public class AllDealsResource {
 
-	@GET
+	@GET// (written by Prakhar)
 	@Path("/list")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<DealFPStructure> DealList(){
@@ -35,7 +35,17 @@ public class AllDealsResource {
 		
 	}
 	
-	@GET
+    @GET// (written by Prakhar)
+    @Path("/groups/{deal_name}")
+    @Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<ProductsDealStructure> getAllGroups(@PathParam("deal_name") String deal_name)
+	{
+		AllDealsService allDealsService = new AllDealsService();
+		ArrayList<ProductsDealStructure> x = allDealsService.showDealGroups(deal_name);
+		return x;
+	}
+
+	@GET// (written by Prakhar)
 	@Path("/deal_id/{deal_id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<AllDeals> DealItems(@PathParam("deal_id") int deal_id){
@@ -44,7 +54,7 @@ public class AllDealsResource {
 		
 	}
 	
-	@POST
+    @POST// (written by Prakhar)
     @Path("/buydealproducts/{user_id}/{deal_id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
@@ -59,18 +69,5 @@ public class AllDealsResource {
     	return tmp;
     	
     }
-	
-	@GET
-    @Path("/groups/{deal_name}")
-    @Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<ProductsDealStructure> getAllGroups(@PathParam("deal_name") String deal_name)
-	{
-		AllDealsService allDealsService = new AllDealsService();
-		ArrayList<ProductsDealStructure> x = allDealsService.showDealGroups(deal_name);
-		return x;
-	}
-	
-	
-	
-	
+		
 }
