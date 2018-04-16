@@ -19,7 +19,7 @@ $('#login')
 										localStorage.user_PINCODE = response.user_pincode;
 										localStorage.user_Phone = response.user_phone;
 										localStorage.wallet_balance=response.wallet_balance;
-										alert(localStorage.product_id_buynow);
+										//alert(localStorage.product_id_buynow);
 										if (localStorage.email == 'admin@gmail.com') {
 											window.location = "http://localhost:5224/ebaytester/admin_category.html";
 										}

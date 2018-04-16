@@ -47,11 +47,13 @@ document.getElementById("prod_id").value=localStorage.product_id_seller;
         	contentType : false,
         	cache : false,
         	dataType: 'text',
-	        complete:function(data){
+	        success:function(data){
+              //alert(data.responseText);
 	        	  alert("successfully upload");
-	        	  window.location = "http://localhost:5224/ebaytester/home.html";
+	        	  window.location = "http://localhost:5224/ebaytester/Seller_dashboard.html";
 	            }
 	        });
+          return false;
 	    });
   </script>
 </body>

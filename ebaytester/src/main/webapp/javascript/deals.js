@@ -14,7 +14,7 @@ $.ajax({
                   remaining_products--;
                   strng+=`<div class="col-sm-3" id="div1">
                             <div class="thumbnail" >
-                             <a href="#"><img src="${response[4*i+j].product_img_url}" onclick="deal('${response[4*i+j].deal_name}')" alt="img1">
+                             <a href="#"><img src="${response[4*i+j].product_img_url}" onclick="deal('${response[4*i+j].deal_name}')" alt="img1" style="height:200px;width:100%">
                              <h4 style="text-align:center" id="img" onclick="deal('${response[4*i+j].deal_name}')">${response[4*i+j].deal_name}</h4>
                              </a>
                             </div>

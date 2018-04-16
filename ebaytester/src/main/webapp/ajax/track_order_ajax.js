@@ -167,6 +167,7 @@ $('#rateSeller').click(function(e){
 	            type :"PUT",
 	            url: "http://localhost:5224/ebaytester/webapi/transaction/rateSeller/"
 	            	+ localStorage.user_Id + "/" + localStorage.track_order_txn + "/" + localStorage.seller_to_be_rated +"/"+ user +"/"+strUser,
+	            async: false,
 	            dataType:'text',
 	            complete: function(response){
 	            	

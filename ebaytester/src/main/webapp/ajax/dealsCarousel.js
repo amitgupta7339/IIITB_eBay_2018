@@ -10,15 +10,21 @@ $.ajax({
     if (response != null) {
       result=response;
       var i=0;
-      var count=1;
+      var count=0;
       content="";
       console.log(response.length);
-      for(i=0;i<Math.ceil((response.length)/3);i++)
+      for(i=0;i<(response.length);i=i+3)
       {
-    	  if(response[i].deal_name!="")
-    	  {
-           deal_image(i);
-    	  }
+    	if(i==0){
+    		content+=`<div class="item active">`
+	  	}
+	  	else{
+	  		content+=`<div class="item">`
+	  	}
+	  	if(++count<=response.length && response[i].deal_name!="")
+	  	{
+	  		deal_image(i);
+	  	}
         if(++count<=response.length && response[i+1].deal_name!="")
         {
           deal_image(i+1);
@@ -27,6 +33,7 @@ $.ajax({
         {
           deal_image(i+2);
         }
+        content+=`</div>`
       }
       $('#Deal_Images_List').html(content);
     }
@@ -35,8 +42,8 @@ $.ajax({
 //============================================================function of show images dynamic HTML code===========================================//
 function deal_image(x)
 {
-  content+=`<div class="item active">
-  <span class="col-sm-4"><a href="#" onclick="deal_products(${x})"><img src="${result[x].product_img_url}" alt="Chicago" style="width:100%;"></a>
+  content+=`<div>
+  <span class="col-sm-4"><a href="#" onclick="deal_products(${x})"><img src="${result[x].product_img_url}" alt="Chicago" style="height:300px;width:100%"></a>
   <div class="carousel-caption">
     <a href="#" onclick="deal_products(${x})"><h3>${result[x].deal_name}</h3></a>
   </div>

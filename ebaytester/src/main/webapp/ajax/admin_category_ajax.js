@@ -46,9 +46,8 @@ $('#admin_deals').submit(function(){
         data: $('#admin_deals').serialize(),
         dataType: 'text',
         complete: function(data){
-     	   console.log(data);
-           //alert(JSON.stringify(data));
-
+     	   console.log(data.responseText);
+     	   alert(data.responseText);
         }
       });
 
