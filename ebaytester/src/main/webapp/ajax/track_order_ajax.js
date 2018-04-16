@@ -21,10 +21,10 @@ function transaction_list(){
 	            dataType:'JSON',
 	  					success: function(response){
 	            result=response;
-	            
+
 	            user = result[0].a1;
 	            //alert(user);
-	            
+
 	            transaction_product_list+='<ul class="list-group">';
 	              for(i in result)
 	              {
@@ -35,7 +35,9 @@ function transaction_list(){
 
 	              document.getElementById('product_display').innerHTML=transaction_product_list;
 	            }
+							return false;
 	          });
+						return false;
 };
 
 
@@ -73,96 +75,63 @@ function txn_list(x){
     								'</div>'+
     						'</div>'+
     					'</div>'+
-    				'</div>'+	
+    				'</div>'+
     			'</div>'+
     		'</li>'
-    	
+
 };
 
 
 function sellerRate(x){
-	
+
 	//alert("http://localhost:5224/ebaytester/webapi/products/getproduct/"+ result[x].product_id);
-	
+
 	$.ajax({
         type :"GET",
         url: "http://localhost:5224/ebaytester/webapi/products/getproduct/"+ result[x].product_id,
         async: false,
         dataType:'JSON',
         success: function(response){
-        	
+
 
 			result_for_name = response.user_id;
-			
+
 		//	alert(result_for_name);
         }
+				return false;
       });
-	
-	
+
+
 	var seller_id = parseInt(result_for_name);
 	//alert("http://localhost:5224/ebaytester/webapi/user/getUserName/"+ seller_id);
-	
+
 	$.ajax({
         type :"GET",
         url: "http://localhost:5224/ebaytester/webapi/user/getUserName/"+ seller_id,
         async: false,
         dataType:'text',
         complete: function(response){
-        	
+
         	var a = JSON.stringify(response);
 			var b = JSON.parse(a);
 			//alert(b.responseText);
-			
+
 			result_for_name1 = b.responseText;
         }
       });
-	
-	
 	localStorage.seller_to_be_rated = result[x].product_id;
 	document.getElementById("rateModal_seller_name").innerHTML =  result_for_name1;
-	
-	
-/*
- 	$('#rateProduct').click(function(e){
-		  //e.preventDefault();
-		  var amt = $("#enterAmount").val();		  
-		  var e = document.getElementById("rateselecter");
-		  var strUser = e.options[e.selectedIndex].value;
-		  
-		  var str = "http://localhost:5224/ebaytester/webapi/transaction/rateProduct/"
-			  + localStorage.user_Id + "/" + localStorage.track_order_txn + "/" + result[x].product_id+"/"+ user +"/"+strUser;
-		  //alert(str);
-		  
-		  $.ajax({
-	            type :"PUT",
-	            url: "http://localhost:5224/ebaytester/webapi/transaction/rateProduct/"
-	            	+ localStorage.user_Id + "/" + localStorage.track_order_txn + "/" + result[x].product_id+"/"+ user +"/"+strUser,
-	            dataType:'text',
-	            complete: function(response){
-	            	
-	            	var a = JSON.stringify(response);
-					var b = JSON.parse(a);
-					alert(b.responseText);
-					
-					$('#myModal').modal('hide');
-					transaction_list();
-	            }
-	          });
-		});
-*/	  
 	};
-	
-	
+
+
 $('#rateSeller').click(function(e){
 		  //e.preventDefault();
-		  var amt = $("#enterAmount").val();		  
+		  var amt = $("#enterAmount").val();
 		  var e = document.getElementById("rateselecter");
 		  var strUser = e.options[e.selectedIndex].value;
-		  
 		  var str = "http://localhost:5224/ebaytester/webapi/transaction/rateSeller/"
 			  + localStorage.user_Id + "/" + localStorage.track_order_txn + "/" + localStorage.seller_to_be_rated +"/"+ user +"/"+strUser;
-		  //alert(str);
-		  
+
 		  $.ajax({
 	            type :"PUT",
 	            url: "http://localhost:5224/ebaytester/webapi/transaction/rateSeller/"
@@ -170,35 +139,33 @@ $('#rateSeller').click(function(e){
 	            async: false,
 	            dataType:'text',
 	            complete: function(response){
-	            	
+
 	            	var a = JSON.stringify(response);
 					var b = JSON.parse(a);
 					alert(b.responseText);
-					
+
 					$('#myModal').modal('hide');
 					transaction_list();/*function call*/
-					
+
 	            }
 	          });
 		});
-	
+
 
 function update_staus(x) {
-	
+
 	if(user == 1){
-		//alert("aaya");
-		
 		$.ajax({
 			type : "PUT",
 			url : "http://localhost:5224/ebaytester/webapi/transaction/updateUserTransaction/"
 				+localStorage.user_Id+"/"+localStorage.track_order_txn+"/"+result[x].product_id,
 			dataType : 'text',
 			complete : function(response) {
-				
+
 				var a = JSON.stringify(response);
 				var b = JSON.parse(a);
 				alert(b.responseText);
-				
+
 				transaction_list();/*function call*/
 			}
 		});
@@ -212,12 +179,9 @@ function update_staus(x) {
 				var a = JSON.stringify(response);
 				var b = JSON.parse(a);
 				alert(b.responseText);
-				
 				transaction_list();/*function call*/
 			}
 		});
 	}
-	
-};
 
-//onclick="sellerRate('+x+')"
+};
