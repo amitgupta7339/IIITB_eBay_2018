@@ -45,10 +45,9 @@ $('#admin_deals').submit(function(){
         url:  "http://localhost:5224/ebaytester/webapi/deal/addNewDeal",
         data: $('#admin_deals').serialize(),
         dataType: 'text',
-        complete: function(data){
-     	   console.log(data.responseText);
-     	   alert(data.responseText);
+        success: function(data){
+        	alert(data);
+     	   //alert("successfully upload");
         }
       });
-
 	});

@@ -18,7 +18,7 @@ import org.ebay_project.ebaytester.service.DealService;
 @Path("/deal")
 public class DealResource {
 //=============================================ADD NEW DEAL BY ADMIN ==============================================//	
-	@POST // (write by Pulkit)
+	@POST // (written by Pulkit)
 	@Path("/addNewDeal")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -32,7 +32,7 @@ public class DealResource {
 		return dealService.uploadNewDeal(deal_name.toUpperCase(), free_products, paid_products, overall_discount);
 	}
 //==============================================GET ALL DEAL NAMES=================================================// 	
-	@GET// (write by Pulkit)
+	@GET// (written by Pulkit)
 	@Path("/getAllDealName")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Deals> getAllDeal()
@@ -42,7 +42,7 @@ public class DealResource {
 		return dealService.getAllDealsName();
 	}
 //=============================================ADD PRODUCTS INTO DEAL============================================//	
-	@POST // (write by Pulkit)
+	@POST // (written by Pulkit)
 	@Path("/addProductsToDeal")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -54,7 +54,7 @@ public class DealResource {
 		return dealService.addProductsToDeal(deal);
 	}
 //===========================================GET DEAL INFO ON DEAL NAME==========================================//	
-	@GET // (write by Pulkit)
+	@GET // (written by Pulkit)
 	@Path("/{deal_name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Deals getDealInfo(@PathParam("deal_name") String deal_name)

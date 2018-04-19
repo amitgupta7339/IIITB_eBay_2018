@@ -35,9 +35,8 @@ function transaction_list(){
 
 	              document.getElementById('product_display').innerHTML=transaction_product_list;
 	            }
-							return false;
 	          });
-						return false;
+	  return false;
 };
 
 
@@ -78,7 +77,7 @@ function txn_list(x){
     				'</div>'+
     			'</div>'+
     		'</li>'
-
+return false;
 };
 
 
@@ -98,7 +97,6 @@ function sellerRate(x){
 
 		//	alert(result_for_name);
         }
-				return false;
       });
 
 
@@ -121,6 +119,7 @@ function sellerRate(x){
       });
 	localStorage.seller_to_be_rated = result[x].product_id;
 	document.getElementById("rateModal_seller_name").innerHTML =  result_for_name1;
+	return false;
 	};
 
 
