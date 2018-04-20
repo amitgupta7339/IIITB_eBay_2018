@@ -184,6 +184,9 @@ public class ProductService {
 				product.setSeller_city(rs2.getString(8));
 				product.setSeller_address(rs2.getString(7));
 				product.setSeller_contact(rs2.getString(11));
+				product.setSeller_rating(rs2.getFloat(18));
+				product.setSeller_user_rating_count(rs2.getFloat(19));
+				product.setSeller_total_rating_count(rs2.getFloat(20));
 			}
 			product.setProduct_name(rs.getString(5));
 			product.setProduct_price(rs.getFloat(6));

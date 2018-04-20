@@ -13,6 +13,9 @@ public class Product_desc {
 	private String seller_address;
 	private String seller_email;
 	private String seller_contact;
+	private float seller_rating=0;
+	private float seller_user_rating_count=0;
+	private float seller_total_rating_count=0;
 	private String product_name;
 	private float product_price;
 	private int product_discount;
@@ -40,10 +43,13 @@ public class Product_desc {
 	private String Warranty_Type;
 	private String Card_Class;
 	public Product_desc() {}
+	
+	
 	public Product_desc(int product_id, int sub_category_id, int category_id, int seller_id, String seller_name,
-			String seller_country, String seller_state, String seller_city,String seller_address,String seller_email, String seller_contact, String product_name,
-			float product_price, int product_discount, String product_condition, String product_shipping,
-			int product_sold_quantity, String product_img_url, int product_available_quantity,
+			String seller_country, String seller_state, String seller_city, String seller_address, String seller_email,
+			String seller_contact, int seller_rating, int seller_user_rating_count, int seller_total_rating_count,
+			String product_name, int product_price, int product_discount, String product_condition,
+			String product_shipping, int product_sold_quantity, String product_img_url, int product_available_quantity,
 			String product_description, int rating, String item_id, String brand, String color, String screen_Size,
 			String processor, String storage, String warranty, String oS, int year, String gender, String applicable,
 			String material, String size, String style, String warranty_Type, String card_Class) {
@@ -52,13 +58,16 @@ public class Product_desc {
 		this.sub_category_id = sub_category_id;
 		this.category_id = category_id;
 		this.seller_id = seller_id;
-		this.seller_email = seller_email;
 		this.seller_name = seller_name;
 		this.seller_country = seller_country;
 		this.seller_state = seller_state;
 		this.seller_city = seller_city;
 		this.seller_address = seller_address;
+		this.seller_email = seller_email;
 		this.seller_contact = seller_contact;
+		this.seller_rating = seller_rating;
+		this.seller_user_rating_count = seller_user_rating_count;
+		this.seller_total_rating_count = seller_total_rating_count;
 		this.product_name = product_name;
 		this.product_price = product_price;
 		this.product_discount = product_discount;
@@ -86,7 +95,38 @@ public class Product_desc {
 		Warranty_Type = warranty_Type;
 		Card_Class = card_Class;
 	}
-	
+
+
+	public float getSeller_rating() {
+		return seller_rating;
+	}
+
+
+	public void setSeller_rating(float seller_rating) {
+		this.seller_rating = seller_rating;
+	}
+
+
+	public float getSeller_user_rating_count() {
+		return seller_user_rating_count;
+	}
+
+
+	public void setSeller_user_rating_count(float seller_user_rating_count) {
+		this.seller_user_rating_count = seller_user_rating_count;
+	}
+
+
+	public float getSeller_total_rating_count() {
+		return seller_total_rating_count;
+	}
+
+
+	public void setSeller_total_rating_count(float seller_total_rating_count) {
+		this.seller_total_rating_count = seller_total_rating_count;
+	}
+
+
 	public String getSeller_city() {
 		return seller_city;
 	}
