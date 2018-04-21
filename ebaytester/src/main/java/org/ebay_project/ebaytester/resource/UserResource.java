@@ -1,5 +1,7 @@
 package org.ebay_project.ebaytester.resource;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -59,6 +61,13 @@ public class UserResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getUserName(@PathParam("user_id") int user_id) {
 		return userService.getUserName(user_id);
+	}
+// ============================================TESTING============================================================//
+	@GET
+	@Path("/getalluser")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> getalluser() {
+		return userService.getalluser();
 	}
 }
 // =================================================END OF CODE===================================================//

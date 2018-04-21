@@ -53,7 +53,7 @@ function txn_list(x){
     					'<div class="col-sm-8">'+
     						'<div class="row" style="margin-top:10px;">'+
     							'<div class="col-sm-2">'+
-    								'<p id = "product_id">'+result[x].product_id+'</p>'+
+    								'<p id = "product_id">item id: '+result[x].item_id+'</p>'+
     								'</div>'+
     							'<div class="col-sm-6">'+
     								'<p id = "product_name">'+result[x].product_name+'</p>'+

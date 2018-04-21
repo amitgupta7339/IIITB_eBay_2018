@@ -9,6 +9,7 @@ $('#Transaction_form').submit(function(){
 		type : "GET",
 		url : "http://localhost:5224/ebaytester/webapi/transaction/checkTxn/"
 			+localStorage.user_Id+"/"+txt,
+			async:false,
 		dataType : 'text',
 		success : function(response) {
 			localStorage.track_order_txn = txt;
@@ -20,4 +21,5 @@ $('#Transaction_form').submit(function(){
 			}
 		}
 	});
+	return false;
 });

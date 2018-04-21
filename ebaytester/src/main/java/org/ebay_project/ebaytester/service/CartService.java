@@ -51,6 +51,9 @@ public class CartService {
 				if (rs1.next()) {
 					C1.setUser_fname(rs1.getString("user_fname"));
 					C1.setUser_lname(rs1.getString("user_lname"));
+					C1.setUser_email(rs1.getString("user_email"));
+					String address=rs1.getString("user_address")+","+rs1.getString("user_state");
+					C1.setUser_address(address);
 				}
 				float price = rs.getInt("product_price");
 				price = price - (price * rs.getInt("product_discount")) / 100;

@@ -17,6 +17,7 @@ import org.ebay_project.ebaytester.model.Message;
 import org.ebay_project.ebaytester.model.Product;
 import org.ebay_project.ebaytester.model.Product_desc;
 import org.ebay_project.ebaytester.model.Product_list;
+import org.ebay_project.ebaytester.model.Productcompare;
 import org.ebay_project.ebaytester.service.CategoryService;
 import org.ebay_project.ebaytester.service.ProductService;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
@@ -61,7 +62,17 @@ public class ProductResource {
    	 System.out.println(Product1+" "+Product2);
    	 return ps.getComparedProduct(Product1,Product2) ;
     }
-		
+    
+    @POST
+    @Path("/productcompare")
+    @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public List<Productcompare> productcompare(@FormParam("Product1") String Product1,@FormParam("Product2") String Product2)
+    {
+   	 ProductService ps = new ProductService();
+   	 System.out.println(Product1+" "+Product2);
+   	 return ps.productcompare(Product1,Product2) ;
+    }
 // =============================GET ALL PRODUCTS OF PARTICULAR SELLER BASES ON SELLER ID==========================//
 	@GET // (written by Anamol)
 	@Path("/list/{user_id}")

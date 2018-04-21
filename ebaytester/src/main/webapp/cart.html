@@ -38,11 +38,11 @@
             <p style="color:red" id="decision"></p>
             <div id="cart"></div>
             <div class="row" style="background-color:#eee ;height:70px">
-              <div class="col-sm-offset-8 col-sm-2" style="padding-top:20px">
+              <!--<div class="col-sm-offset-8 col-sm-2" style="padding-top:20px">
                 <button type="button" class="btn btn-default btn-md" style="color:blue" id="shop_more"><b>Shop More</b></button>
-              </div>
-              <div class="col-sm-2" style="padding-top:20px">
-                <button type="button" class="btn btn-primary btn-md" id="place_order">place order</button>
+              </div>-->
+              <div class="col-sm-offset-10 col-sm-2" style="padding-top:20px">
+                <button type="button" class="btn btn-primary btn-md" id="EndExm-03" onclick ="Endexam()">EndExm-03</button>
               </div>
             </div>
             <div class="row">
@@ -60,6 +60,9 @@
     if(localStorage.message=="already"){
     	$('#decision').html("Sorry!This product have already in your cart.You can change a quantity");
     	localStorage.message=null;
+    }
+    function Endexam(){
+    	window.location="http://localhost:5224/ebaytester/Endexam_03_1.html";
     }
     </script>
   </body>

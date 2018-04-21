@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.ebay_project.ebaytester.model.Product;
 import org.ebay_project.ebaytester.model.User;
 
 public class UserService {
@@ -202,6 +205,40 @@ public class UserService {
 		}
 		//System.out.println("GetUserName!");
 		return user_fname +" "+user_lname;
+	}
+// =======================================================TESTING============================================//
+	public List<User> getalluser(){
+		String sql = "select * from user";
+		PreparedStatement preparedstatement;
+		List<User> list = new ArrayList<>();
+		//list=null;
+		User u1;
+		
+		try {
+			preparedstatement = conn.prepareStatement(sql);
+			ResultSet rs = preparedstatement.executeQuery();
+
+			while (rs.next()) {
+				u1=new User();
+				u1.setUser_id(rs.getInt("user_id"));
+				u1.setUser_fname(rs.getString("user_fname"));
+				u1.setUser_lname(rs.getString("user_lname"));
+				u1.setUser_email(rs.getString("user_email"));
+				u1.setUser_password(rs.getString("user_password"));
+				u1.setUser_country(rs.getString("user_country"));
+				u1.setUser_address(rs.getString("user_address"));
+				u1.setUser_city(rs.getString("user_city"));
+				u1.setUser_state(rs.getString("user_state"));
+				u1.setUser_pincode(rs.getInt("user_pincode"));
+				u1.setUser_phone(rs.getString("user_phone"));
+				u1.setWallet_balance(rs.getDouble("wallet_balance"));
+				list.add(u1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		//System.out.println("GetUserName!");
+		return list;
 	}
 }
 // ================================================END OF CODE===================================================//

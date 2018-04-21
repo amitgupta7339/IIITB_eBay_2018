@@ -186,7 +186,6 @@ public class Transaction {
 
 	public void setProduct_rating(float product_rating) {
 		this.product_rating = product_rating;
-	}
-	
+	}	
 
 }

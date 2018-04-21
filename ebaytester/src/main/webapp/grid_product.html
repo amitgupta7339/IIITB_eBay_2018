@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>eBay.in - Shopping Cart|eBay</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="jquery-3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+   <link rel="icon" href="ebayFav.ico">
+     <script>
+      $(function(){
+        $("#header").load("header.html");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <div>Price:<span><input type="number" value="" name="start" id="start"></span> To <span><input type="number" value="" name="end" id="end"></span> <span><button type="submit" class="btn btn-primary" onclick="GridView()">Apply</button></span></div>
+    <br>
+    <br>
+    <div class="container-fluid" id="done">
+      <!-- <div class="row">
+        <div class="col-sm-3" style="border: 3px solid #CCC">
+          <img src="" style="height:300px,width:200px">
+          <br>
+          <p>item id: </p>
+        </div>
+      </div> -->
+    </div>
+    <script>
+    var result;
+    var array=[];
+    $.ajax({
+              type: "get",
+              url:  "http://localhost:5224/ebaytester/webapi/products/getAllproducts",
+              dataType: "JSON",
+              success: function(response){
+                str=``;
+                result=response;
+                if(response!=null)
+                {var i;
+                  for (i=0;i<response.length;i=i+4) {
+                  str+=`<div class="row">`
+                    for(j=0;j<4 && (i+j)<response.length ;j++){
+                     str+=`<div class="col-sm-3" style="border: 3px solid #CCC;height:400px;">
+                        <img src="${response[i+j].product_img_url}" style="height:200px;width:300px">
+                        <br>
+                        <br>
+                        <div class="col-sm-5">
+                        <p>item id: ${response[i+j].item_id}</p>
+                        </div>
+                        <div class="col-sm-5">
+                        <p>price: ${response[i+j].product_price}</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div>
+                        <p>${response[i+j].product_name}</p>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-primary" onclick="buybutton(${response[i+j].product_id})">BuyNow</button>
+                        </div>
+                      </div>`
+                    }
+                    str+=`</div>`
+                    // catOptions += "<option>" + array[i] + "</option>";
+                 }
+$('#done').html(str);
+                }
+
+              }
+            });
+            function GridView(){
+            //  alert(result.length);
+
+              for (i=0;i<result.length;i++){
+                  if($('#start').val()<=parseInt(result[i].product_price) && $('#end').val()>=parseInt(result[i].product_price)){
+                    array.push(result[i]);
+                  }
+
+              }
+              str=``
+              //alert(array.length);
+              for (i=0;i<array.length;i=i+4) {
+              str+=`<div class="row">`
+                for(j=0;j<4 && (i+j)<array.length ;j++){
+                 str+=`<div class="col-sm-3" style="border: 3px solid #CCC;height:400px;">
+                    <img src="${array[i+j].product_img_url}" style="height:200px;width:300px">
+                    <br>
+                    <br>
+                    <div class="col-sm-5">
+                    <p>item id: ${array[i+j].item_id}</p>
+                    </div>
+                    <div class="col-sm-5">
+                    <p>price: ${array[i+j].product_price}</p>
+                    </div>
+                    <br>
+                    <br>
+                    <div>
+                    <p>${array[i+j].product_name}</p>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary" onclick="buybutton(${array[i+j].product_id})">BuyNow</button>
+                    </div>
+                  </div>`
+              }
+                str+=`</div>`
+            }
+            $('#done').html(str);
+          }
+          function buybutton(prod_id) {
+		// alert("inside");
+		localStorage.product_id_buynow = prod_id;
+		localStorage.place_order = null;
+		localStorage.deal_id = null;
+    alert(localStorage.deal_id);
+		if(localStorage.user_Id==null)
+			{
+			 window.location = "http://localhost:5224/ebaytester/login.html";
+			}
+			else if(parseInt(localStorage.user_PINCODE)==8888)
+			{
+				window.location = "http://localhost:5224/ebaytester/address_form_buyer.html";
+			}
+		else
+			{
+			 window.location = "http://localhost:5224/ebaytester/orderReview.html";
+     }
+   }
+
+    </script>
+</body>
+</html>

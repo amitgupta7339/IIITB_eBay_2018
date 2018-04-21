@@ -28,9 +28,9 @@ $(document).ready(function()
           for(var j=0;j<4 && remaining_products>0;j++){
             remaining_products--;
             if(response[4*i+j].productDiscount!=0){
-            $("#c1").append("<div class='col-sm-3' id='div1'>\
+            $("#c1").append("<div class='col-sm-3' id='div1'style='height:500px;'>\
          						<div class='thumbnail'>\
-         						<img src='"+response[4*i+j].productImageUrl +"' alt='img1'>\
+         						<img src='"+response[4*i+j].productImageUrl +"' alt='img1'style='height:200px;width:100%'>\
          						<div>\
          							<h4 style='text-align:center'>"+response[4*i+j].productName+"</h4>\
          							<h4 style='text-align:center'>Price:<strike>"+response[4*i+j].productPrice+"</strike></h4>\
@@ -41,9 +41,9 @@ $(document).ready(function()
          						</div>\
          					</div>");
             }else{
-                $("#c1").append("<div class='col-sm-3' id='div1'>\
+                $("#c1").append("<div class='col-sm-3' id='div1'style='height:500px;'>\
  						<div class='thumbnail'>\
- 						<img src='"+response[4*i+j].productImageUrl +"' alt='img1'>\
+ 						<img src='"+response[4*i+j].productImageUrl +"' alt='img1' style='height:200px;width:100%'>\
  						<div>\
  							<h4 style='text-align:center'>"+response[4*i+j].productName+"</h4>\
  							<h4 style='text-align:center'>Final Price:"+(response[4*i+j].productPrice-(response[4*i+j].productDiscount/100)*response[4*i+j].productPrice)+"</h4>\
@@ -56,7 +56,7 @@ $(document).ready(function()
             }
           }
 
-        $("#c1").append("</div>\
+        $("#c1").append("<br><br></div>\
          				</div>");
 
        }

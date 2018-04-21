@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Endexam_03_1|eBay</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="jquery-3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+   <link rel="icon" href="ebayFav.ico">
+     <script>
+      $(function(){
+        $("#header").load("header.html");
+      });
+    </script>
+    <style>
+     table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+  }
+     </style>
+  </head>
+  <body>
+    <div>
+      <p>NAME: AMIT GUPTA</p>
+      <p>Roll NO: MT2017017</p>
+    </div>
+    <hr>
+    <div class="container">
+      <form class="form-horizontal" id="ProductCompare">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Product1">Item Id1*</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Product1" placeholder="Enter Item_id1" name="Product1" value="" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Product2">Item Id2*</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="Product2" placeholder="Enter Item_id2" name="Product2" value="" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+        <div class="col-sm-2" style="padding-top:20px">
+        <button type="button" class="btn btn-primary btn-md" id="prv1" onclick ="previous()">prv</button>
+      </div>
+          <div class="col-sm-offset-8 col-sm-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+      <div id="compareTable"></div>
+      <!--  <div class="col-sm-offset-10 col-sm-2" style="padding-top:20px">
+        <button type="button" class="btn btn-primary btn-md" id="prv" onclick ="prv()">prv</button>
+      </div>-->
+    </div>
+    <script>
+    $('#ProductCompare').submit(function(){
+    	 // alert("saumya");
+    		$.ajax({
+    			type: "post",
+    			url:  "http://localhost:5224/ebaytester/webapi/products/productcompare",
+    			data: $('#ProductCompare').serialize(),
+    			dataType: "JSON",
+    			success: function(response){
+    					//alert("done");
+    					var str='<table id="compareTable" class="table table-bordered table-hover">';
+    			        if(response!=null)
+    				         {
+    				        	 var prod1=response[0];
+    				        	 var prod2=response[1];
+    				        	 str+='<tr><td>Product</td><td>Item-1</td><td>Item-2</td><tr>';
+    				        	 str+='<tr><td>Product image</td><td><img src="'+prod1.product_img_url+'"style="height:200px;width:200px"></td><td><img src="'+prod2.product_img_url+'" style="height:200px;width:200px"></td><tr>';
+    				        	 str+='<tr><td>Product price</td><td>'+prod1.product_price+'</td><td>'+prod2.product_price+'</td><tr>';
+    				        	 str+='<tr><td>product_color</td><td>'+prod1.color+'</td><td>'+prod2.color+'</td><tr>';
+    				        	 str+='<tr><td>Product category</td><td>'+prod1.category+'</td><td>'+prod2.category+'</td><tr>';
+    				        	 str+='<tr><td>Product sub_category</td><td>'+prod1.sub_category+'</td><td>'+prod2.sub_category+'</td><tr>';
+    				        	 str+='<tr><td>Product Name</td><td>'+prod1.product_name+'</td><td>'+prod2.product_name+'</td><tr>';
+    				        	 // str+='<tr><td>Product Price</td><td>'+prod1.product_price+'</td><td>'+prod2.product_price+'</td><tr>';
+    				        	 // str+='<tr><td>Product Discount</td><td>'+prod1.product_discount+'</td><td>'+prod2.product_discount+'</td><tr>';
+    				        	 // str+='<tr><td>Product Available quantity</td><td>'+prod1.product_available_quantity+'</td><td>'+prod2.product_available_quantity+'</td><tr>';
+    				        	 // str+='<tr><td>Product Shipping</td><td>'+prod1.product_shipping+'</td><td>'+prod2.product_shipping+'</td><tr>';
+    				        	 // str+='<tr><td>Product color</td><td>'+prod1.color+'</td><td>'+prod2.color+'</td><tr>';
+    				        /*	 str+='<tr><td>Product Id</td><td>'+prod1.product_id+'</td><td>'+prod2.product_id+'</td><tr>';
+    				        	 str+='<tr><td>Product Id</td><td>'+prod1.product_id+'</td><td>'+prod2.product_id+'</td><tr>';
+    				        	 str+='<tr><td>Product Id</td><td>'+prod1.product_id+'</td><td>'+prod2.product_id+'</td><tr>';
+    				        	 str+='<tr><td>Product Id</td><td>'+prod1.product_id+'</td><td>'+prod2.product_id+'</td><tr>';
+    				        	 str+='<tr><td>Product Id</td><td>'+prod1.product_id+'</td><td>'+prod2.product_id+'</td><tr>';*/
+    				         }
+    			        str+='</table><div class="col-sm-offset-10 col-sm-2" style="padding-top:20px"><button type="button" class="btn btn-primary btn-md" id="prv" onclick ="prv()">prv</button></div>'
+    				       	document.getElementById("compareTable").innerHTML = str;
+    					}
+    				     });
+    				   return false;
+    	     });
+    </script>
+    <script>
+    function previous(){
+        window.location="http://localhost:5224/ebaytester/Endexam_03_1.html";
+      }
+    function prv(){
+      window.location="http://localhost:5224/ebaytester/Endexam_03_2.html";
+    }
+    </script>
+  </body>
+</html>

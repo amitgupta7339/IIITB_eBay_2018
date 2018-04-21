@@ -6,12 +6,17 @@ public class Cart {
 	private int product_available_quantity;
 	private String user_fname;
 	private String user_lname;
+	private String user_email;
+	private String user_country;
+    private String user_address;
+    private String user_state;
+    private int user_pincode;
 	private String product_name;
 	private String product_img_url;
 	private String product_shipping;
 	private int product_user_quantity;
 	private String item_id;
-
+private int product_discount;
 	public Cart() {
 	};
 
@@ -114,4 +119,77 @@ public class Cart {
 	public void setProduct_user_quantity(int product_user_quantity) {
 		this.product_user_quantity = product_user_quantity;
 	}
+
+
+
+	public int getProduct_discount() {
+		return product_discount;
+	}
+
+
+
+	public void setProduct_discount(int product_discount) {
+		this.product_discount = product_discount;
+	}
+
+
+
+	public String getUser_email() {
+		return user_email;
+	}
+
+
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
+
+
+
+	public String getUser_country() {
+		return user_country;
+	}
+
+
+
+	public void setUser_country(String user_country) {
+		this.user_country = user_country;
+	}
+
+
+
+	public String getUser_address() {
+		return user_address;
+	}
+
+
+
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
+	}
+
+
+
+	public String getUser_state() {
+		return user_state;
+	}
+
+
+
+	public void setUser_state(String user_state) {
+		this.user_state = user_state;
+	}
+
+
+
+	public int getUser_pincode() {
+		return user_pincode;
+	}
+
+
+
+	public void setUser_pincode(int user_pincode) {
+		this.user_pincode = user_pincode;
+	}
+	
 }

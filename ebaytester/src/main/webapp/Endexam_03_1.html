@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Endexam_03_1|eBay</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="jquery-3.3.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+   <link rel="icon" href="ebayFav.ico">
+     <script>
+      $(function(){
+        $("#header").load("header.html");
+      });
+    </script>
+    <style>
+     table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      text-align: center;
+  }
+     </style>
+  </head>
+  <body>
+    <div>
+      <p>NAME: AMIT GUPTA</p>
+      <p>Roll NO: MT2017017</p>
+    </div>
+    <hr>
+    <div class="container">
+     <div id="user_cart_table"></div>
+    </div>
+    <br><br>
+    <div class="col-sm-4" style="padding-top:20px">
+      <button type="button" class="btn btn-primary btn-md" id="EndExm-03_2" onclick ="EndexamQ2()">EndExm03/Q2</button>
+    </div>
+    <div class="col-sm-4" style="padding-top:20px">
+      <button type="button" class="btn btn-primary btn-md" id="EndExm-03_3" onclick ="EndexamQ3()">EndExm03/Q3</button>
+    </div>
+    <div class="col-sm-4" style="padding-top:20px">
+      <button type="button" class="btn btn-primary btn-md" id="Home" onclick ="home()">Home</button>
+    </div>
+
+    <script>
+    var total=0;
+    $.ajax({
+            type: "get",
+            url: "http://localhost:5224/ebaytester/webapi/cart/getallproduct/"+localStorage.user_Id,
+            dataType: "JSON",
+            success: function(response){
+              total=0;
+            	var str=``;
+              if(response!=null){
+                 str+=`<table style="width:100%;" id="table">
+                <tr>
+              <th>srl no</th>
+              <th>Item_id</th>
+              <th>Item_price</th>
+            </tr>`
+                for (i=0;i<response.length;i++) {
+                  total=parseFloat(parseFloat(total)+parseFloat(response[i].product_price)).toFixed(2);
+                	  str+=`<tr>
+                	    <td>${i+1}</td>
+                      <td>${response[i].item_id}</td>
+                      <td>${response[i].product_price.toFixed(2)}</td>
+                      </tr>`
+               }
+               localStorage.total=total;
+               var vat=0;
+               vat=(total*4)/100;
+               vat=vat.toFixed(2);
+               localStorage.vat=vat;
+                str+=`</table>
+                <br>
+                <br>
+                <div class="col-sm-4">
+                <p>Total_price :Rs. ${total}</p>
+                </div>
+                <div class="col-sm-4">
+                <span>VAT:Rs. ${vat}</span>
+                </div>`
+                	$('#user_cart_table').html(str);
+                  localStorage.total=total;
+              }
+            }
+         });
+    </script>
+    <script>
+    function home(){
+      window.location="http://localhost:5224/ebaytester/home.html";
+    }
+    function EndexamQ2(){
+      window.location="http://localhost:5224/ebaytester/Endexam_03_2.html";
+    }
+    function EndexamQ3(){
+      window.location="http://localhost:5224/ebaytester/Endexam_03_3.html";
+    }
+    </script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 //================================================Ajax call on submit the buyer address form=======================================================//
+alert(localStorage.deal_id);
 $('#Address_From').submit(function(){
                $.ajax({
                  type: "post",
@@ -13,11 +14,13 @@ $('#Address_From').submit(function(){
 		                 localStorage.user_State=response.user_state;
 		                 localStorage.user_PINCODE=response.user_pincode;
 	                   localStorage.user_Phone=response.user_phone;
+	                   alert(localStorage.deal_id);
+	                   alert("hello");
 	                   if(localStorage.place_order=="place_order"){
 							           window.location="http://localhost:5224/ebaytester/orderReviewCart.html";
 	                   }
-                     else if( localStorage.deal_id!=null)
-                     {
+                     else if(localStorage.deal_id!="null")
+                     {alert("hanji");
                        window.location = "http://localhost:5224/ebaytester/orderReviewDeal.html";
                      }
 	                   else{
